@@ -5,6 +5,7 @@ import Interface from "./Interface";
 import Options from "./Options";
 
 function AllQuestions(props) {
+  
   // questions in object
   const Questions = {
     one: "How long should you check for breathing while performing CPR ?",
@@ -19,6 +20,7 @@ function AllQuestions(props) {
     nine: ` Where should you place the AED pads when treating an infant for pediatric cardiac arrest ?`,
     ten: `While performing CPR on an infant, another rescuer appears on the scene, what do you do next ?`,
   };
+
   // correct answers in object
   const correctAns = {
     one: "No longer than 10 seconds",
@@ -33,38 +35,54 @@ function AllQuestions(props) {
     nine: "Chest and back",
     ten: "Have the second rescuer help with CPR, to minimize fatigue",
   };
+
+
   // questions object converted to array
   const values = Object.values(Questions);
+
   // answers converted to array
   const crtAns = Object.values(correctAns);
+
   // initating student choice state
   const [studentChoice, setStudentChoice] = useState([]);
+
   // intiate score state
   const [score, setScore] = useState();
+
+  // intiate show state
   const [show, setShow] = useState();
+  
   // getting examinee's choice from child compnt
   const student = (choice) => {
     setStudentChoice(choice);
   };
+
   // to show confirm submit btn
   const showSubmit = (show) => {
     setShow(show)
   }
+
   // filter correct ans from choice
   const correctStudents = crtAns.filter((ans) =>
     // some element of stdt-coie which are equal to elemt of crt ans
     studentChoice.some((choice) => ans === choice)
   );
+
   // to handle confirm submit btn
   const handleResults = () => {
-    // console.log("submit btn");
+
+    // hide confirm submit btn
+    setShow(false)
+
     // get number of correct answers
     const correctAnswers = correctStudents.length;
+
     // calculate Score percentage
     const score = (correctAnswers / 10) * 100;
+
     // updating score
     setScore(score);
-    // console.log(correctStudents);
+
     // parameter for passing
     if (score > 10) {
       alert(`You Passed the Exam at ${score}%`);
@@ -81,20 +99,25 @@ function AllQuestions(props) {
 
   return (
     <div>
+
       {/* Rendering the Questions */}
       <Interface question={values} option={Options} student={student} show={showSubmit} />
+      
       {/* The confirm submit btn to end the exam */}
       <button onClick={handleResults} className={show ? 'link' : 'hide'} >
         Confirm submit
       </button>
+
       {/* link to certificate page */}
       <Link to='/certificate' className={score > 10 ? "link-two" : "hide"} onClick={handlePassed}>
         see Certificate
       </Link>
+
       {/* link to home page */}
         <Link to='/' className={score < 10 ? "link-two" : "hide"}>
         go to Home
       </Link>
+
     </div>
   );
 }

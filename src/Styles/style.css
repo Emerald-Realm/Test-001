@@ -3,9 +3,9 @@
   padding: 0px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   border: none;
   text-decoration: none;
+  font-family: Inconsolata, monospace;
 }
 
 @font-face {

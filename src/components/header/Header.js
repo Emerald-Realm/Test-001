@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import { Link, BrowserRouter as Router,} from 'react-router-dom'
 import { useState } from "react";
 import "../../Styles/style.css";
 import PropTypes from "prop-types";
@@ -26,6 +26,8 @@ function Header(props) {
         </div>
         <nav className={menu ? "header-nav" : "hide"} data-testid="header-nav" id="navbar-nav">
           <ul className="nav-list" data-testid="nav-list">
+            {/* <Router> */}
+
             <Link to='/' className='link-tag'>
               <li className="nav-link" data-testid="nav-link">
                 Home
@@ -46,6 +48,7 @@ function Header(props) {
                 Start Exam
               </li>
             </Link>
+            {/* </Router> */}
           </ul>
         </nav>
       </header>

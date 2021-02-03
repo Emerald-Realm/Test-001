@@ -7,9 +7,11 @@ const date = new Date()
 
 function Certificate(props) {
 
+    const user = JSON.parse(localStorage.getItem('User'))
+
     const { certified } = props
 
-    if ( certified ) {
+    if (certified) {
 
         return (
             <div>

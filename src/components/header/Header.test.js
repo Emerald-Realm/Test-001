@@ -1,15 +1,26 @@
 import React from 'react';
-import { render } from '@testing-library/react'
+import { render, fireEvent, screen } from '@testing-library/react'
 import Header from './Header'
+import { Link, BrowserRouter as Router, } from 'react-router-dom'
+
 
 describe('header component', () => {
 
 
     it('should render the following', () => {
-        const { getByText, getByTestId, getByRole } = render(<Header />)
+        const { getByText, getByTestId, getByRole } = render(
+            <Router>
+                <Header />
+            </Router>
+        )
 
-        getByTestId('aid')
         getByText('Home')
+        getByText('Account')
+        getByText('Certificate')
+        getByText('Start Exam')
+
+        fireEvent.click(screen.getByText('Menu'))
+        getByText('Close')
 
     })
 
